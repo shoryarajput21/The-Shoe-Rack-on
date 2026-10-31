@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Edit product | Admin</title><meta name="robots" content="noindex"><link rel="stylesheet" href="../css/style.css">
+<style>form{display:grid;gap:14px;max-width:760px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:grid;gap:4px;font-size:.85rem;color:var(--mute)}.chk{display:flex;gap:16px;flex-wrap:wrap}.chk label{display:flex;align-items:center;gap:6px;color:var(--ink)}#pv{height:200px;object-fit:contain;background:#f0f0ee;border-radius:10px}@media(max-width:560px){.two{grid-template-columns:1fr}}</style></head>
+<body hidden><main class="wrap block"><p class="cta" style="margin:0 0 20px"><a class="btn ghost sm" href="products.html">All products</a><a class="btn ghost sm" href="add-product.html">Add product</a><a class="btn ghost sm" href="../index.html" target="_blank">View website</a><button class="btn ghost sm" onclick="logout()">Log out</button></p><h1 style="font-family:'Archivo Black',sans-serif">Edit product</h1>
+<form id="f" novalidate>
+<label>Product name<input name="name" required></label>
+<label>Brand<select name="brand_id" id="brand" required></select></label>
+<label>Short description (optional)<input name="short_desc"></label>
+<label>Upload images from your phone or computer (you can pick many)<input type="file" id="files" accept="image/*" multiple></label><p class="note" id="upmsg"></p><label>Main image URL (filled automatically after upload)<input name="main_image" id="img" type="url" required placeholder="https://…"></label><img id="pv" alt="Image preview" hidden>
+<label>Additional image URLs (optional, one per line)<textarea name="extra" rows="2"></textarea></label><div id="xprev" class="thumbs" aria-label="Additional images. Click one to remove it."></div>
+<div class="two"><label>Selling price (₹)<input name="price" type="number" min="0" step="1" required></label><label>Original price (₹, optional)<input name="original_price" type="number" min="0" step="1"></label></div>
+<label>Colors (optional, comma separated)<input name="colors"></label>
+<div class="chk"><label><input type="checkbox" name="is_new">New arrival</label><label><input type="checkbox" name="best_seller">Best seller</label><label><input type="checkbox" name="on_sale">Sale</label></div>
+<div class="cta"><button class="btn" data-status="published">Save and publish</button><button class="btn ghost" data-status="draft">Save as draft (hide from website)</button></div></form></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="../js/config.js"></script><script src="../js/supabase-client.js"></script><script src="../js/common.js"></script><script src="../js/admin/auth.js"></script><script src="../js/admin/upload.js"></script><script src="../js/admin/edit.js"></script></body></html>

@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin login | THE SHOE RACK</title><meta name="robots" content="noindex"><link rel="stylesheet" href="../css/style.css"></head>
+<body><main class="wrap" style="max-width:420px;padding:60px 20px"><h1 style="font-family:'Archivo Black',sans-serif">Admin login</h1>
+<form id="f" style="display:grid;gap:12px"><input id="e" type="email" placeholder="Email" required autocomplete="username"><input id="p" type="password" placeholder="Password" required autocomplete="current-password"><button class="btn" id="go">Sign in</button><p id="msg" role="alert"></p></form></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="../js/config.js"></script><script src="../js/supabase-client.js"></script>
+<script>f.onsubmit=async ev=>{ev.preventDefault();go.disabled=true;msg.textContent='';
+const {data,error}=await sb.auth.signInWithPassword({email:e.value,password:p.value});
+if(error){msg.textContent='Sign in failed. Check your email and password.';go.disabled=false;return}
+const {data:a}=await sb.from('admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
+if(!a){await sb.auth.signOut();msg.textContent='This account is not an administrator.';go.disabled=false;return}
+location.replace('add-product.html')}</script></body></html>
